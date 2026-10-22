@@ -1,0 +1,93 @@
+# Define the default values for the Petclinic Helm chart
+
+# Define global values that can be used across the chart
+global:
+  dockerHubUser: ptn3001
+  defaultTag: "latest"
+
+# Define the services and their configurations
+services:
+  config-server:
+    enabled: true
+    imageName: "spring-petclinic-config-server"
+    tag: ""
+    containerName: config-server
+    containerPort: 8888
+    servicePort: 8888
+    serviceType: ClusterIP
+    replicas: 1
+
+  discovery-server:
+    enabled: true
+    imageName: "spring-petclinic-discovery-server"
+    tag: ""
+    containerName: discovery-server
+    containerPort: 8761
+    servicePort: 8761
+    serviceType: ClusterIP
+    replicas: 1
+
+  api-gateway:
+    enabled: true
+    imageName: "spring-petclinic-api-gateway"
+    tag: ""
+    containerName: api-gateway
+    containerPort: 8080
+    servicePort: 8080
+    serviceType: ClusterIP
+    replicas: 1
+
+  admin-server:
+    enabled: true
+    imageName: "spring-petclinic-admin-server"
+    tag: ""
+    containerName: admin-server
+    containerPort: 9090
+    servicePort: 9090
+    serviceType: ClusterIP
+    replicas: 1
+
+  customers-service:
+    enabled: true
+    imageName: "spring-petclinic-customers-service"
+    tag: ""
+    containerName: customers-service
+    containerPort: 8081
+    servicePort: 8081
+    serviceType: ClusterIP
+    replicas: 1
+
+  vets-service:
+    enabled: true
+    imageName: "spring-petclinic-vets-service"
+    tag: ""
+    containerName: vets-service
+    containerPort: 8082
+    servicePort: 8082
+    serviceType: ClusterIP
+    replicas: 1
+
+  visits-service:
+    enabled: true
+    imageName: "spring-petclinic-visits-service"
+    tag: ""
+    containerName: visits-service
+    containerPort: 8083
+    servicePort: 8083
+    serviceType: ClusterIP
+    replicas: 1
+
+  genai-service:
+    enabled: false
+    imageName: "spring-petclinic-genai-service"
+    tag: ""
+    containerName: genai-service
+    containerPort: 8084
+    servicePort: 8084
+    serviceType: ClusterIP
+    replicas: 1
+
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts: "dev.petclinic.local"

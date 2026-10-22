@@ -1,0 +1,27 @@
+{{- range $name, $config := .Values.services }}
+{{- if $config.enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: {{ $name }}
+  labels:
+    app: {{ $name }}
+spec:
+  replicas: {{ $config.replicas }}
+  selector:
+    matchLabels:
+      app: {{ $name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $name }}
+    spec:
+      containers:
+        - name: {{ $config.containerName }}
+          image: "{{ $.Values.global.dockerHubUser }}/{{ $config.imageName }}:{{ $config.tag | default $.Values.global.defaultTag }}"
+          ports:
+            - containerPort: {{ $config.containerPort }}
+              name: http
+{{- end }}
+{{- end }}
