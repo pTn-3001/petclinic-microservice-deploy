@@ -1,4 +1,7 @@
 services:
   api-gateway:
-    serviceType: NodePort
     nodePort: 30080
+    serviceType: NodePort
+  vets-service:
+    enabled: true
+    tag: b09c8eae
