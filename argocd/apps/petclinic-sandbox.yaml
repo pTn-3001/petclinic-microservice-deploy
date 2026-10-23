@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: petclinic-sandbox
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: 'https://github.com/pTn-3001/petclinic-microservice-deploy.git'
+      targetRevision: main
+      path: charts/petclinic
+      helm:
+        valueFiles:
+          - values.yaml
+          - $repoRoot/envs/sandbox/values.yaml
+    - repoURL: 'https://github.com/pTn-3001/petclinic-microservice-deploy.git'
+      targetRevision: main
+      ref: repoRoot
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev-sandbox
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

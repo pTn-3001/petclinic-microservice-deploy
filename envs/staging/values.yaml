@@ -1,0 +1,19 @@
+services:
+  config-server:
+    enabled: false
+  discovery-server:
+    enabled: false
+  api-gateway:
+    enabled: false
+    serviceType: NodePort
+    nodePort: 30180
+  admin-server:
+    enabled: false
+  customers-service:
+    enabled: false
+  vets-service:
+    enabled: false
+  visits-service:
+    enabled: false
+  genai-service:
+    enabled: false
