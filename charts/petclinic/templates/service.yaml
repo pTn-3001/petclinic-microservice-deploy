@@ -16,5 +16,8 @@ spec:
       protocol: TCP
       port: {{ $config.servicePort }}
       targetPort: {{ $config.containerPort }}
+      {{- if and (eq ($config.serviceType | default "ClusterIP") "NodePort") $config.nodePort }}
+      nodePort: {{ $config.nodePort }}
+      {{- end }}
 {{- end }}
 {{- end }}
