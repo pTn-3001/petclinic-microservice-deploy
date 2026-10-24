@@ -4,4 +4,4 @@ services:
     serviceType: NodePort
   vets-service:
     enabled: true
-    tag: b09c8eae
+    tag: 7ac2b3c9
