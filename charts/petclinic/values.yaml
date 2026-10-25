@@ -13,11 +13,11 @@ monitoring:
 # Define default resource limits and requests
 defalultResources:
   requests:
-    cpu: 100m
+    cpu: 50m
     memory: 128Mi
   limits:
     cpu: 500m
-    memory: 512Mi
+    memory: 384Mi
 
 # Define the services and their configurations
 services:

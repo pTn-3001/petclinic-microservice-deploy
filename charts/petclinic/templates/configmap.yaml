@@ -9,6 +9,7 @@ metadata:
     app: {{ $name }}
 data:
   SPRING_PROFILES_ACTIVE: "docker"
+  JAVA_TOOL_OPTIONS: "-XX:MaxRAMPercentage=50.0 -XX:TieredStopAtLevel=1 -XX:+UseSerialGC"
   {{- if ne $name "config-server" }}
   CONFIG_SERVER_URL: "http://config-server:8888/"
   SPRING_CLOUD_CONFIG_URI: "http://config-server:8888"
