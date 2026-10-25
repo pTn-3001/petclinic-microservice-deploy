@@ -1,0 +1,20 @@
+{{- range $name, $config := .Values.services }}
+{{- if $config.enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $name }}-config
+  labels:
+    app: {{ $name }}
+data:
+  SPRING_PROFILES_ACTIVE: "docker"
+  SPRING_CLOUD_CONFIG_URI: "http://config-server:8888"
+  SPRING_CONFIG_IMPORT: "optional:configserver:http://config-server:8888/"
+  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://discovery-server:8761/eureka/"
+  MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "*"
+  MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED: "true"
+  MANAGEMENT_METRICS_TAGS_APPLICATION: "{{ $name }}"
+  MANAGEMENT_METRICS_DISTRIBUTION_PERCENTILES_HISTOGRAM_HTTP_SERVER_REQUESTS: "true"
+{{- end }}
+{{- end }}

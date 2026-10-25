@@ -23,5 +23,18 @@ spec:
           ports:
             - containerPort: {{ $config.containerPort }}
               name: http
+          env:
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: {{ $config.containerName }}
+          envFrom:
+            - configMapRef:
+                name: {{ $name }}-config
+          resources:
+            requests:
+              cpu: {{ $.Values.defalultResources.requests.cpu }}
+              memory: {{ $.Values.defalultResources.requests.memory }}
+            limits:
+              cpu: {{ $.Values.defalultResources.limits.cpu }}
+              memory: {{ $.Values.defalultResources.limits.memory }}
 {{- end }}
 {{- end }}

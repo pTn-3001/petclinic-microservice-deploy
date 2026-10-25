@@ -5,6 +5,20 @@ global:
   dockerHubUser: ptn3001
   defaultTag: "latest"
 
+# Define monitoring configuration
+monitoring:
+  enabled: false
+  releaseLabel: kube-prometheus-stack
+
+# Define default resource limits and requests
+defalultResources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
 # Define the services and their configurations
 services:
   config-server:
@@ -57,21 +71,21 @@ services:
     serviceType: ClusterIP
     replicas: 1
 
-  vets-service:
-    enabled: true
-    imageName: "spring-petclinic-vets-service"
-    tag: ""
-    containerName: vets-service
-    containerPort: 8082
-    servicePort: 8082
-    serviceType: ClusterIP
-    replicas: 1
-
   visits-service:
     enabled: true
     imageName: "spring-petclinic-visits-service"
     tag: ""
     containerName: visits-service
+    containerPort: 8082
+    servicePort: 8082
+    serviceType: ClusterIP
+    replicas: 1
+
+  vets-service:
+    enabled: true
+    imageName: "spring-petclinic-vets-service"
+    tag: ""
+    containerName: vets-service
     containerPort: 8083
     servicePort: 8083
     serviceType: ClusterIP
