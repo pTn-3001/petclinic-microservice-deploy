@@ -9,9 +9,13 @@ metadata:
     app: {{ $name }}
 data:
   SPRING_PROFILES_ACTIVE: "docker"
+  {{- if ne $name "config-server" }}
   SPRING_CLOUD_CONFIG_URI: "http://config-server:8888"
   SPRING_CONFIG_IMPORT: "optional:configserver:http://config-server:8888/"
+  {{- end }}
+  {{- if and (ne $name "config-server") (ne $name "discovery-server") }}
   EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://discovery-server:8761/eureka/"
+  {{- end }}
   MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "*"
   MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED: "true"
   MANAGEMENT_METRICS_TAGS_APPLICATION: "{{ $name }}"
