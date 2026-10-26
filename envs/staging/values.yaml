@@ -1,27 +1,19 @@
 services:
-  admin-server:
-    enabled: true
-    tag: v1.0.2
   api-gateway:
-    enabled: true
-    nodePort: 30180
+    enabled: false
     serviceType: NodePort
-    tag: v1.0.2
+    nodePort: 30180
   config-server:
-    enabled: true
-    tag: v1.0.2
-  customers-service:
-    enabled: true
-    tag: v1.0.2
+    enabled: false
   discovery-server:
-    enabled: true
-    tag: v1.0.2
-  genai-service:
-    enabled: true
-    tag: v1.0.2
-  vets-service:
-    enabled: true
-    tag: v1.0.2
+    enabled: false
+  admin-server:
+    enabled: false
+  customers-service:
+    enabled: false
   visits-service:
-    enabled: true
-    tag: v1.0.2
+    enabled: false
+  vets-service:
+    enabled: false
+  genai-service:
+    enabled: false
