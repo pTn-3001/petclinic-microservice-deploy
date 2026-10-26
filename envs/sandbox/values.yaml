@@ -1,19 +1,26 @@
 services:
-  config-server:
-    enabled: false
-  discovery-server:
-    enabled: false
   api-gateway:
-    enabled: false
+    enabled: true
+    tag: "latest"
     serviceType: NodePort
     nodePort: 30280
+  config-server:
+    enabled: true
+    tag: "latest"
+  discovery-server:
+    enabled: true
+    tag: "latest"
   admin-server:
-    enabled: false
+    enabled: true
+    tag: "latest"
   customers-service:
-    enabled: false
-  vets-service:
-    enabled: false
+    enabled: true
+    tag: "latest"
   visits-service:
-    enabled: false
+    enabled: true
+    tag: "latest"
+  vets-service:
+    enabled: true
+    tag: "b4ecb665"
   genai-service:
     enabled: false
