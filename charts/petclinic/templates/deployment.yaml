@@ -36,10 +36,10 @@ spec:
                 name: {{ $name }}-config
           resources:
             requests:
-              cpu: {{ $.Values.defalultResources.requests.cpu }}
-              memory: {{ $.Values.defalultResources.requests.memory }}
+              cpu: {{ $.Values.defaultResources.requests.cpu }}
+              memory: {{ $.Values.defaultResources.requests.memory }}
             limits:
-              cpu: {{ $.Values.defalultResources.limits.cpu }}
-              memory: {{ $.Values.defalultResources.limits.memory }}
+              cpu: {{ $.Values.defaultResources.limits.cpu }}
+              memory: {{ $.Values.defaultResources.limits.memory }}
 {{- end }}
 {{- end }}

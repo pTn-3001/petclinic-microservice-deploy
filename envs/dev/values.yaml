@@ -1,12 +1,12 @@
 services:
+  api-gateway:
+    enabled: false
+    serviceType: NodePort
+    nodePort: 30080
   config-server:
     enabled: false
   discovery-server:
     enabled: false
-  api-gateway:
-    enabled: false
-    nodePort: 30080
-    serviceType: NodePort
   admin-server:
     enabled: false
   customers-service:
@@ -15,6 +15,5 @@ services:
     enabled: false
   vets-service:
     enabled: false
-    tag: 7ac2b3c9
   genai-service:
     enabled: false

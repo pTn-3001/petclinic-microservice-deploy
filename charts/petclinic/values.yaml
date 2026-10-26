@@ -5,24 +5,24 @@ global:
   dockerHubUser: ptn3001
   defaultTag: "latest"
 
-# Define monitoring configuration
+# Toggle Prometheus ServiceMonitor creation (enable after installing kube-prometheus-stack)
 monitoring:
   enabled: false
   releaseLabel: kube-prometheus-stack
 
-# Define default resource limits and requests
-defalultResources:
+# Default CPU and Memory requests/limits for all microservices (REQ-05 & REQ-06)
+defaultResources:
   requests:
-    cpu: 50m
-    memory: 128Mi
+    cpu: "100m"
+    memory: "256Mi"
   limits:
-    cpu: 500m
-    memory: 384Mi
+    cpu: "500m"
+    memory: "768Mi"
 
-# Define the services and their configurations
+# Define the services and their configurations (default enabled: false; each environment enables what it needs)
 services:
   config-server:
-    enabled: true
+    enabled: false
     imageName: "spring-petclinic-config-server"
     tag: ""
     containerName: config-server
@@ -32,7 +32,7 @@ services:
     replicas: 1
 
   discovery-server:
-    enabled: true
+    enabled: false
     imageName: "spring-petclinic-discovery-server"
     tag: ""
     containerName: discovery-server
@@ -42,7 +42,7 @@ services:
     replicas: 1
 
   api-gateway:
-    enabled: true
+    enabled: false
     imageName: "spring-petclinic-api-gateway"
     tag: ""
     containerName: api-gateway
@@ -52,7 +52,7 @@ services:
     replicas: 1
 
   admin-server:
-    enabled: true
+    enabled: false
     imageName: "spring-petclinic-admin-server"
     tag: ""
     containerName: admin-server
@@ -62,7 +62,7 @@ services:
     replicas: 1
 
   customers-service:
-    enabled: true
+    enabled: false
     imageName: "spring-petclinic-customers-service"
     tag: ""
     containerName: customers-service
@@ -72,7 +72,7 @@ services:
     replicas: 1
 
   visits-service:
-    enabled: true
+    enabled: false
     imageName: "spring-petclinic-visits-service"
     tag: ""
     containerName: visits-service
@@ -82,7 +82,7 @@ services:
     replicas: 1
 
   vets-service:
-    enabled: true
+    enabled: false
     imageName: "spring-petclinic-vets-service"
     tag: ""
     containerName: vets-service
@@ -102,6 +102,6 @@ services:
     replicas: 1
 
 ingress:
-  enabled: true
+  enabled: false
   className: "nginx"
   hosts: "dev.petclinic.local"
